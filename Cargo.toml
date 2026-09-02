@@ -16,4 +16,4 @@ repository = "https://github.com/brooke-ec/heap-drop"
 readme = "README.md"
 
 [dependencies]
-heap-drop-macros = { path = "macros" }
+heap-drop-macros = { path = "macros", version = "1.0.0" }
