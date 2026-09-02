@@ -1,8 +1,11 @@
+//! This crate provides a derive macro for the `HeapDrop` trait, providing a function that returns a vector of children.
+
 use proc_macro::TokenStream;
 use proc_macro2::{Ident, Span};
 use quote::quote;
 use syn::{Data, DeriveInput, Fields, parse_macro_input};
 
+/// Derives the `HeapDrop` trait for a struct or enum, allowing it to be disposed of using a heap-allocated queue.
 #[proc_macro_derive(HeapDrop)]
 pub fn heap_drop_derive(input: TokenStream) -> TokenStream {
     let input = parse_macro_input!(input as DeriveInput);
@@ -38,7 +41,7 @@ pub fn heap_drop_derive(input: TokenStream) -> TokenStream {
     })
 }
 
-/// Deconstructs fields into and collects those which implement `HeapDrop` into a vector.
+/// Emits the tokens to deconstruct fields and collect those which implement `HeapDrop` into a vector.
 fn deconstruct_fields(fields: &Fields) -> proc_macro2::TokenStream {
     match fields {
         Fields::Named(fields) => {
@@ -57,7 +60,7 @@ fn deconstruct_fields(fields: &Fields) -> proc_macro2::TokenStream {
     }
 }
 
-/// Collects the values stored in the given identifiers into a vector of those which implement `HeapDrop`.
+/// Emits the tokens to collect the values stored at the given identifiers into a vector of those which implement `HeapDrop`.
 fn collect_implementing_vars(vars: &Vec<Ident>) -> proc_macro2::TokenStream {
     quote! {
         let mut children: Vec<Box<dyn ::heap_drop::HeapDrop>> = vec![];
