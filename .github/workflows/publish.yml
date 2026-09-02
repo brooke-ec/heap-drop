@@ -21,11 +21,11 @@ jobs:
         run: cargo test --workspace
       - name: Publish heap-drop-macros
         run: |
-          cargo release publish --workspace --package heap-drop-macros --no-sync --execute
+          cargo release publish --workspace --package heap-drop-macros --execute
         env:
           CARGO_REGISTRY_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
       - name: Publish heap-drop
         run: |
-          cargo release publish --workspace --package heap-drop --no-sync --execute
+          cargo release publish --workspace --package heap-drop --execute
         env:
           CARGO_REGISTRY_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
