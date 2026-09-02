@@ -1,0 +1,31 @@
+name: Publish to crates.io
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Install cargo-release
+        run: cargo install cargo-release
+      - name: Verify workspace builds
+        run: cargo build --workspace
+      - name: Run tests
+        run: cargo test --workspace
+      - name: Publish heap-drop-macros
+        run: |
+          cargo release publish --workspace --package heap-drop-macros --no-sync --execute
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
+      - name: Publish heap-drop
+        run: |
+          cargo release publish --workspace --package heap-drop --no-sync --execute
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}

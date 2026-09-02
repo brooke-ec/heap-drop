@@ -4,9 +4,16 @@ resolver = "2"
 
 [package]
 name = "heap-drop"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2024"
-
+description = "Drop deeply nested structures without stack overflow 🚮"
+license = "MIT"
+authors = ["brooke-ec"]
+keywords = ["drop", "heap", "recursion", "stack", "memory"]
+categories = ["data-structures", "memory-management"]
+documentation = "https://docs.rs/heap-drop"
+repository = "https://github.com/brooke-ec/heap-drop"
+readme = "README.md"
 
 [dependencies]
 heap-drop-macros = { path = "macros" }

@@ -1,9 +1,14 @@
 [package]
 name = "heap-drop-macros"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2024"
-license = "MIT OR Apache-2.0"
-description = "Derive macro for HeapDrop trait"
+license = "MIT"
+description = "Derive macro for HeapDrop trait - enables heap-based dropping of deeply nested structures"
+authors = ["brooke-ec"]
+keywords = ["derive", "macro", "heap", "drop", "recursion"]
+categories = ["data-structures", "memory-management"]
+documentation = "https://docs.rs/heap-drop-macros"
+repository = "https://github.com/brooke-ec/heap-drop"
 
 [lib]
 proc-macro = true
