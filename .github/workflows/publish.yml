@@ -18,6 +18,11 @@ jobs:
       - name: Run tests
         run: cargo test --workspace
       - name: Publish heap-drop-macros
-        run: cargo publish --package heap-drop-macros --token ${{ secrets.CRATES_IO_TOKEN }}
+        run: cargo publish --package heap-drop-macros
+        continue-on-error: true
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
       - name: Publish heap-drop
-        run: cargo publish --package heap-drop --token ${{ secrets.CRATES_IO_TOKEN }}
+        run: cargo publish --package heap-drop
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
